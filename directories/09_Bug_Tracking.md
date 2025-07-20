@@ -1,0 +1,9 @@
+# Bug Tracking Log: love.arts
+
+## Introduction
+This document is a mandatory log for all errors encountered and resolved by the Artisan agent. Before fixing any new error, consult this log. All new errors must be documented here **before** a solution is implemented.
+
+| Bug ID | Date Found | Status    | Feature Area      | Description                                                                                              | Root Cause Analysis                                                                          | Resolution                                                                                                |
+| :----- | :--------- | :-------- | :---------------- | :------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
+| B-001  | YYYY-MM-DD | Open | [Example] User registration endpoint (`POST /api/v1/auth/register`) returns a 500 server error on duplicate email instead of a 409 user-facing conflict. | The `catch` block in `auth.controller.js` does not properly check for a unique constraint violation from Sequelize. | Updated the controller's catch block to specifically check for `error.name === 'SequelizeUniqueConstraintError'` and, if true, return a `409 Conflict` status with a clear error message. |
+|        |            |           |                   |                                                                                                          |                                                                                              |                                                                                                           |
